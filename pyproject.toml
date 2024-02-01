@@ -3,15 +3,15 @@ requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
-name = "bm-templ-project"
+name = "template-project"
 dynamic = ["version"]
-description = ''
+description = 'A template for Bluemira projects.'
 readme = "README.md"
 requires-python = ">=3.8"
-# license = "<set:license>"
+license = "MIT"
 keywords = []
 authors = [
-  # { name = "<set:author-name>", email = "<set:author-email>" },
+  # { name = "{{ author-name }}", email = "{{ author-email }}" },
 ]
 classifiers = [
   "Programming Language :: Python",
@@ -34,14 +34,14 @@ docs = ["mkdocs-material", "mkdocstrings[python]"]
 lint = ["ruff", "mypy"]
 
 [project.urls]
-Documentation = "https://github.com/<set:org-name>/bm-templ-project#readme"
-Issues = "https://github.com/<set:org-name>/bm-templ-project/issues"
-Source = "https://github.com/<set:org-name>/bm-templ-project"
+Documentation = "https://github.com/{{ org-name }}/template-project#readme"
+Issues = "https://github.com/{{ org-name }}/template-project/issues"
+Source = "https://github.com/{{ org-name }}/template-project"
 
 [tool.hatch.version]
 source = "vcs"
 [tool.hatch.build.hooks.vcs]
-version-file = "bm_templ_project/_version.py"
+version-file = "template_project/_version.py"
 
 # env: default
 [tool.hatch.envs.default]
@@ -70,7 +70,7 @@ serve = "mkdocs serve"
 detached = true                               # Don't inherit from default (does not download project dependencies)
 dependencies = ["ruff", "mypy", "pre-commit"]
 [tool.hatch.envs.lint.scripts]
-typing = "mypy --install-types --non-interactive {args:src/bm_templ_project tests}"
+typing = "mypy --install-types --non-interactive {args:src/template_project tests}"
 style = ["ruff {args:.}"]
 fmt = ["pre-commit run --all-files --hook-stage manual"]
 all = ["style", "typing"]
@@ -128,14 +128,14 @@ convention = "google"
 "__init__.py" = ["F401", "F403"]
 
 [tool.coverage.run]
-source_pkgs = ["bm_templ_project", "tests"]
+source_pkgs = ["template_project", "tests"]
 branch = true
 parallel = true
-omit = ["bm_templ_project/_version.py"]
+omit = ["template_project/_version.py"]
 
 [tool.coverage.paths]
-fusrr = ["bm_templ_project", "*/bm_templ_project"]
-tests = ["tests", "*/bm_templ_project/tests"]
+fusrr = ["template_project", "*/template_project"]
+tests = ["tests", "*/template_project/tests"]
 
 [tool.coverage.report]
 exclude_lines = [
@@ -143,4 +143,4 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
-omit = ["bm_templ_project/_version.py"]
+omit = ["template_project/_version.py"]

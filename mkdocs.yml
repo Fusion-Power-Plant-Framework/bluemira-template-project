@@ -1,4 +1,4 @@
-site_name: bm-templ-project
+site_name: template-project
 site_description: <set:docs-site-description>
 # site_url: <set:docs-site-url>
 repo_name: <set:repo-name>
@@ -6,7 +6,7 @@ repo_name: <set:repo-name>
 theme:
   name: material
 watch:
-  - bm_templ_project
+  - template_project
 plugins:
   - mkdocstrings
   - search
@@ -15,4 +15,4 @@ nav:
   - index.md
   - examples.md
   - Code Reference:
-      - reactor.py: reference/bm_templ_project.reactor.md
+      - reactor.py: reference/template_project.reactor.md

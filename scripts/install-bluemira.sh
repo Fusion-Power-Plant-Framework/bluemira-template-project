@@ -34,7 +34,8 @@ git checkout -q $latest_tag
 echo
 echo Installing...
 echo
-pip install .
+mamba env create -f conda/environment.yml
+conda activate bluemira
 
 echo
 echo Finished

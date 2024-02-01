@@ -11,7 +11,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Project Overview
 
-::: bm_templ_project
+::: template_project
 
 ## Acknowledgments
 

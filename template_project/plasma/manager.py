@@ -1,6 +1,6 @@
-# SPDX-FileCopyrightText: 2024-present <set:author-name> <<set:author-email>>
+# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>
 #
-# SPDX-License-Identifier: <set:license>
+# SPDX-License-Identifier: MIT
 
 
 from bluemira.base.reactor import ComponentManager

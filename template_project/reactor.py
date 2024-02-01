@@ -1,6 +1,6 @@
-# SPDX-FileCopyrightText: 2024-present <set:author-name> <<set:author-email>>
+# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>
 #
-# SPDX-License-Identifier: <set:license>
+# SPDX-License-Identifier: MIT
 
 """The reactor design example."""
 
@@ -10,12 +10,12 @@ from bluemira.base.parameter_frame import EmptyFrame
 from bluemira.base.reactor import Reactor
 from bluemira.base.reactor_config import ReactorConfig
 
-from bm_templ_project.plasma.builder import PlasmaBuilder
-from bm_templ_project.plasma.desinger import PlasmaDesigner
-from bm_templ_project.plasma.manager import Plasma
-from bm_templ_project.tf_coil.builder import TFCoilBuilder
-from bm_templ_project.tf_coil.designer import TFCoilDesigner
-from bm_templ_project.tf_coil.manager import TFCoil
+from template_project.plasma.builder import PlasmaBuilder
+from template_project.plasma.desinger import PlasmaDesigner
+from template_project.plasma.manager import Plasma
+from template_project.tf_coil.builder import TFCoilBuilder
+from template_project.tf_coil.designer import TFCoilDesigner
+from template_project.tf_coil.manager import TFCoil
 
 # %% [markdown]
 #
