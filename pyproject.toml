@@ -45,6 +45,10 @@ version-file = "template_project/_version.py"
 
 # env: default
 [tool.hatch.envs.default]
+type = "conda"
+command = "conda"
+python = "3.8"
+environment-file = "bluemira/conda/environment.yml"
 features = ["dev", "test", "docs", "lint"]
 
 # env: test
