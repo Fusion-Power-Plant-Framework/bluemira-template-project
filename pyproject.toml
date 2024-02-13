@@ -16,7 +16,7 @@ authors = [
 classifiers = [
   "Programming Language :: Python",
   "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.10",
+  # "Programming Language :: Python :: 3.10",
 ]
 
 dependencies = ["numpy", "matplotlib"]
@@ -44,45 +44,47 @@ source = "vcs"
 version-file = "template_project/_version.py"
 
 # env: default
-[tool.hatch.envs.default]
-type = "conda"
-command = "conda"
-python = "3.8"
-environment-file = "bluemira/conda/environment.yml"
-features = ["dev", "test", "docs", "lint"]
+# [tool.hatch.envs.default]
+# type = "conda"
+# command = "conda"
+# python = "3.8"
+# environment-file = "bluemira/conda/environment.yml"
+# features = ["dev", "test", "docs", "lint"]
 
 # env: test
-[tool.hatch.envs.test]
-features = ["test"]
-[[tool.hatch.envs.test.matrix]]
-python = ["3.8", "3.10"]
-[tool.hatch.envs.test.scripts]
-tests = "pytest {args:tests}"
-tests-cov = "coverage run -m pytest {args:tests}"
-cov-report = ["- coverage combine", "coverage report"]
-cov-all = ["tests-cov", "cov-report"]
+# [tool.hatch.envs.test]
+# features = ["test"]
+# [[tool.hatch.envs.test.matrix]]
+# python = ["3.8", "3.10"]
+# [tool.hatch.envs.test.scripts]
+# tests = "pytest {args:tests}"
+# tests-cov = "coverage run -m pytest {args:tests}"
+# cov-report = ["- coverage combine", "coverage report"]
+# cov-all = ["tests-cov", "cov-report"]
 
 # env: docs
-[tool.hatch.envs.docs]
-features = ["docs"]
-[tool.hatch.envs.docs.scripts]
-build = "mkdocs build"
-serve = "mkdocs serve"
+# [tool.hatch.envs.docs]
+# features = ["docs"]
+# [tool.hatch.envs.docs.scripts]
+# build = "mkdocs build"
+# serve = "mkdocs serve"
 
 # env: lint
-[tool.hatch.envs.lint]
-detached = true                               # Don't inherit from default (does not download project dependencies)
-dependencies = ["ruff", "mypy", "pre-commit"]
-[tool.hatch.envs.lint.scripts]
-typing = "mypy --install-types --non-interactive {args:src/template_project tests}"
-style = ["ruff {args:.}"]
-fmt = ["pre-commit run --all-files --hook-stage manual"]
-all = ["style", "typing"]
+# [tool.hatch.envs.lint]
+# detached = true                               # Don't inherit from default (does not download project dependencies)
+# dependencies = ["ruff", "mypy", "pre-commit"]
+# [tool.hatch.envs.lint.scripts]
+# typing = "mypy --install-types --non-interactive {args:src/template_project tests}"
+# style = ["ruff {args:.}"]
+# fmt = ["pre-commit run --all-files --hook-stage manual"]
+# all = ["style", "typing"]
 
 # tool: ruff
 [tool.ruff]
 line-length = 80
 preview = true
+
+[tool.ruff.lint]
 exclude = [
   ".git",
   "__pycache__",
@@ -109,24 +111,22 @@ ignore = [
   "PLR0915",
 ]
 unfixable = [
-  # Don't touch unused imports
-  "F401",
+  "F401", # Don't touch unused imports
 ]
 
-[tool.ruff.isort]
-known-first-party = ["fusrr"]
-force-to-top = ["numpy", "matplotlib", "bpy"]
+[tool.ruff.lint.isort]
+known-first-party = ["template_project"]
 
-[tool.ruff.flake8-tidy-imports]
+[tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
 
-[tool.ruff.mccabe]
+[tool.ruff.lint.mccabe]
 max-complexity = 20
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 # Tests can use magic values, assertions, and relative imports
 "tests/**/*" = ["PLR2004", "S101", "TID252"]
 "__init__.py" = ["F401", "F403"]
@@ -142,9 +142,5 @@ fusrr = ["template_project", "*/template_project"]
 tests = ["tests", "*/template_project/tests"]
 
 [tool.coverage.report]
-exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
-]
+"exclude_also" = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
 omit = ["template_project/_version.py"]

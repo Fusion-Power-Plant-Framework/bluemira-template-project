@@ -16,6 +16,13 @@
 # trap "clean_up $tmp_dir" EXIT
 
 # cd $tmp_dir
+INSTALL_CONDA=true
+while getopts i: flag
+do
+    case "${flag}" in
+        i) INSTALL_CONDA=false;;
+    esac
+done
 
 echo
 echo Cloning Bluemira...
@@ -31,11 +38,23 @@ echo $latest_tag
 echo
 git checkout -q $latest_tag
 
-# echo
-# echo Installing...
-# echo
-# mamba env create -f conda/environment.yml
-# conda activate bluemira
+echo
+echo Installing...
+echo
 
-# echo
-# echo Finished
+if [ "$INSTALL_CONDA" = true ] ; then
+    source scripts/install-conda.sh
+else
+    source ~/.mambaforge-init.sh
+    mamba env create -f conda/environment.yml
+    mamba activate bluemira
+fi
+pip install -e . --config-settings editable_mode=compat
+pre-commit install -f
+
+cd ..
+pip install -e .
+pre-commit install -f
+
+echo
+echo Finished
