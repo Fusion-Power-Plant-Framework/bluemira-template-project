@@ -1,10 +1,12 @@
-# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>
+# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>   # noqa: E501
 #
 # SPDX-License-Identifier: MIT
-
+"""TF Coil Designer."""
 
 import numpy as np
+
 from bluemira.base.designer import Designer
+from bluemira.base.reactor_config import ConfigParams
 from bluemira.geometry.optimisation import optimise_geometry
 from bluemira.geometry.parameterisations import GeometryParameterisation
 from bluemira.geometry.tools import (
@@ -13,7 +15,8 @@ from bluemira.geometry.tools import (
 from bluemira.geometry.wire import BluemiraWire
 from bluemira.utilities.tools import get_class_from_module
 
-# And now the TF Coil, in this instance for simplicity we are only making one TF coil.
+# And now the TF Coil, in this instance for simplicity we are only making
+# one TF coil.
 #
 # The TF coil designer finds the geometry parameterisation given in
 # the `build_config` which should point to a class.
@@ -31,7 +34,12 @@ class TFCoilDesigner(Designer[GeometryParameterisation]):
 
     param_cls = None  # This designer takes no parameters
 
-    def __init__(self, plasma_lcfs, params, build_config):
+    def __init__(
+        self,
+        plasma_lcfs: BluemiraWire,
+        params: None,
+        build_config: ConfigParams,
+    ):
         super().__init__(params, build_config)
         self.lcfs = plasma_lcfs
         self.parameterisation_cls = get_class_from_module(
@@ -42,23 +50,25 @@ class TFCoilDesigner(Designer[GeometryParameterisation]):
     def run(self) -> GeometryParameterisation:
         """Run the design of the TF coil."""
         parameterisation = self.parameterisation_cls(
-            var_dict=self.build_config["var_dict"]
+            var_dict=self.build_config["var_dict"],
         )
         min_dist_to_plasma = 1  # meter
         return self.minimise_tf_coil_size(parameterisation, min_dist_to_plasma)
 
     def minimise_tf_coil_size(
-        self, geom: GeometryParameterisation, min_dist_to_plasma: float
+        self,
+        geom: GeometryParameterisation,
+        min_dist_to_plasma: float,
     ) -> GeometryParameterisation:
-        """
-        Run an optimisation to minimise the size of the TF coil.
+        """Run an optimisation to minimise the size of the TF coil.
 
         We're minimising the size of the coil whilst always keeping a
         minimum distance to the plasma.
         """
         distance_constraint = {
             "f_constraint": lambda g: self._constrain_distance(
-                g, min_dist_to_plasma
+                g,
+                min_dist_to_plasma,
             ),
             "tolerance": np.array([1e-6]),
         }
@@ -71,8 +81,10 @@ class TFCoilDesigner(Designer[GeometryParameterisation]):
         return optimisation_result.geom
 
     def _constrain_distance(
-        self, geom: BluemiraWire, min_distance: float
+        self,
+        geom: BluemiraWire,
+        min_distance: float,
     ) -> np.ndarray:
         return np.array(
-            min_distance - distance_to(geom.create_shape(), self.lcfs)[0]
+            min_distance - distance_to(geom.create_shape(), self.lcfs)[0],
         )

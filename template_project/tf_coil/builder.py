@@ -1,6 +1,7 @@
-# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>
+# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>   # noqa: E501
 #
 # SPDX-License-Identifier: MIT
+"""TF Coil Builder."""
 
 from dataclasses import dataclass
 
@@ -15,10 +16,10 @@ from bluemira.geometry.tools import (
 )
 from bluemira.geometry.wire import BluemiraWire
 
-# The TF coil builder is then passed the centreline from the designer to create the
-# Component and the CAD of the TF coil.
-# If more TF coils were to be required the build_xyz of `TFCoilBuilder` would need to
-# be modified.
+# The TF coil builder is then passed the centreline from the designer to create
+# the Component and the CAD of the TF coil.
+# If more TF coils were to be required the build_xyz of `TFCoilBuilder` would
+# need to be modified.
 #
 # Notice that only `TFCoilBuilder` has required parameters in this case.
 
@@ -35,9 +36,9 @@ class TFCoilBuilder(Builder):
     """Build a 3D model of a TF Coil from a given centre line."""
 
     params: TFCoilBuilderParams
-    param_cls: TFCoilBuilderParams
+    param_cls = TFCoilBuilderParams
 
-    def __init__(self, params, centreline):
+    def __init__(self, params: TFCoilBuilderParams, centreline: BluemiraWire):
         super().__init__(params, {})
         self.centreline = centreline
 

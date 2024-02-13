@@ -1,6 +1,7 @@
-# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>
+# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>   # noqa: E501
 #
 # SPDX-License-Identifier: MIT
+"""Plasma Designer."""
 
 from dataclasses import dataclass
 
@@ -10,20 +11,21 @@ from bluemira.equilibria.shapes import JohnerLCFS
 from bluemira.geometry.parameterisations import GeometryParameterisation
 
 # ## ParameterFrames and ComponentMangers
-# Firstly we need to define the parameters we're going to use in our reactor design for
-# each component. See the [ParameterFrame example](../base/params.ex.py) for more
-# information.
+# Firstly we need to define the parameters we're going to use in our reactor
+# design for each component.
+# See the [ParameterFrame example](../base/params.ex.py) for more information.
 
 
-# We need to define some `Designers` and `Builders` for our various `Components`.
+# We need to define some `Designers` and `Builders` for our various
+# `Components`.
 #
 # Firstly the plasma.
 # The plasma designer will, using its `ParameterFrame`, evaluate a `JohnerLCFS`
 # geometry parameterisation, returning a wire representing the plasma's
 # last-closed-flux-surface (LCFS).
 #
-# In this case `PlasmaDesigner` has some required parameters but `PlasmaBuilder` does
-# not.
+# In this case `PlasmaDesigner` has some required parameters but `PlasmaBuilder`
+# does not.
 
 
 @dataclass
@@ -46,8 +48,8 @@ class PlasmaDesignerParams(ParameterFrame):
 class PlasmaDesigner(Designer[GeometryParameterisation]):
     """Design a plasma's LCFS using a Johner parametrisation."""
 
-    param = PlasmaDesignerParams
-    param_cls: PlasmaDesignerParams
+    params: PlasmaDesignerParams
+    param_cls = PlasmaDesignerParams
 
     def run(self) -> GeometryParameterisation:
         """Build the LCFS, returning a closed wire defining its outline."""

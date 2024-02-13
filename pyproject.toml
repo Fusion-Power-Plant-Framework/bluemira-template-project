@@ -109,6 +109,9 @@ ignore = [
   "PLR0912",
   "PLR0913",
   "PLR0915",
+  "COM812",
+  "ISC001",
+  "D107",
 ]
 unfixable = [
   "F401", # Don't touch unused imports
@@ -130,6 +133,10 @@ convention = "google"
 # Tests can use magic values, assertions, and relative imports
 "tests/**/*" = ["PLR2004", "S101", "TID252"]
 "__init__.py" = ["F401", "F403"]
+"studies/**/*" = ["INP001", "CPY001"]
+
+[tool.ruff.lint.flake8-copyright]
+notice-rgx = "(?i)# SPDX-FileCopyrightText:\\s\\d{4}(-(\\d{4}|present))*"
 
 [tool.coverage.run]
 source_pkgs = ["template_project", "tests"]

@@ -1,8 +1,11 @@
-# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>
+# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>   # noqa: E501
 #
 # SPDX-License-Identifier: MIT
+"""Plasma Builder."""
 
-from typing import Dict
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 from bluemira.base.builder import Builder
 from bluemira.base.components import Component, PhysicalComponent
@@ -11,13 +14,17 @@ from bluemira.geometry.face import BluemiraFace
 from bluemira.geometry.tools import (
     revolve_shape,
 )
-from bluemira.geometry.wire import BluemiraWire
+
+if TYPE_CHECKING:
+    from bluemira.geometry.wire import BluemiraWire
 
 
 class PlasmaBuilder(Builder):
     """Build the 3D geometry of a plasma from a given LCFS."""
 
-    def __init__(self, wire: BluemiraWire, build_config: Dict):
+    param_cls = None
+
+    def __init__(self, wire: BluemiraWire, build_config: dict):
         super().__init__(None, build_config)
         self.wire = wire
 
