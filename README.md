@@ -30,58 +30,21 @@ The following strings should set using a "Find and Replace" tool:
 
 ***All relevant directories should be set/updated too.**
 
-## Setting up Python environment
-
-[Hatch](https://hatch.pypa.io/latest/) is the recommended Python environment manager for this project. However, any Python environment manager can be used.
-
-### With Hatch
-
-To start using Hatch, it must be installed and be accessible from the command line.
-See the Hatch [installation](https://hatch.pypa.io/latest/install/) for more information.
-
-A simple way to install Hatch is to run:
+Once the repository is cloned please run the install scripts as show
 
 ```bash
-pip install hatch
+bash scripts/install_bluemira.sh
 ```
-
-If you can run `hatch -h` then Hatch has been successfully installed.
-
-We recommend setting the `dirs.env` in your hatch config to the following:
-
-```toml
-[dirs.env]
-virtual = ".hatch"
-```
-
-The path to this file can be found by running:
-
-```bash
-hatch config find
-```
-
-It makes it easier to set the path to environment in your code editor.
-
-Then run:
-
-```bash
-hatch shell
-```
-
-This will create the default hatch environment in the project folder.
-
-Then set the path to your Python environment in your editor to `.hatch/fusrr/bin/python`
-
-### Without Hatch
-
-Setup and activate your environment with your chosen Python environment manager (pyenv, conda, virtualenv, etc.)
-
-Run the following to install this project as a local editable install, with the necessary optional dependency groups:
-
-```bash
-pip install -e '.[dev,test,lint]'
-```
+In future we hope to extend this script to improve the setup experience. 
 
 ## Running reactor designs
 
+The example study can be run as shown:
+
+```
+python studies/first/run.py
+```
+
 ## Running tests
+
+TODO
