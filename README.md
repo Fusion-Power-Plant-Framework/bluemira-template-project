@@ -1,11 +1,6 @@
-# template-project
+# Bluemira template-project
 
 ---
-
-**Table of Contents**
-
-- [Installation](#installation)
-- [License](#license)
 
 ## Setting up and using this template
 
@@ -22,6 +17,8 @@ With your local copy of the repository run the following script and fill in the 
 ```bash
 bash scripts/setup_repo.sh
 ```
+
+You can then add and commit the resulting changes.
 
 Finally to set up your bluemira environment run the following
 
@@ -44,4 +41,5 @@ python studies/first/run.py
 ## Running tests
 
 A test directory is setup (currently empty) once test have been created they can be run with `pytest`.
+
 Once set up this repo creates a github action to run the tests against the current bluemira develop branch which runs on a cron job schedule. By default this runs twice a day.
