@@ -1,10 +1,9 @@
-# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>   # noqa: E501
+# SPDX-FileCopyrightText: 2024-present {{cookiecutter.copyright_yr}}-present {{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>
 #
 # SPDX-License-Identifier: MIT
 """TF Coil Designer."""
 
 import numpy as np
-
 from bluemira.base.designer import Designer
 from bluemira.base.reactor_config import ConfigParams
 from bluemira.geometry.optimisation import optimise_geometry

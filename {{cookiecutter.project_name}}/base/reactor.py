@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024-present {{ copyright-holder }} <{{ copyright-holder-email }}>   # noqa: E501
+# SPDX-FileCopyrightText: {{cookiecutter.copyright_yr}}-present {{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>
 #
 # SPDX-License-Identifier: MIT
 
@@ -11,12 +11,13 @@ from typing import Union
 from bluemira.base.parameter_frame import EmptyFrame
 from bluemira.base.reactor import Reactor
 from bluemira.base.reactor_config import ReactorConfig
-from template_project.plasma.builder import PlasmaBuilder
-from template_project.plasma.desinger import PlasmaDesigner
-from template_project.plasma.manager import Plasma
-from template_project.tf_coil.builder import TFCoilBuilder
-from template_project.tf_coil.designer import TFCoilDesigner
-from template_project.tf_coil.manager import TFCoil
+
+from {{cookiecutter.project_name}}.plasma.builder import PlasmaBuilder
+from {{cookiecutter.project_name}}.plasma.desinger import PlasmaDesigner
+from {{cookiecutter.project_name}}.plasma.manager import Plasma
+from {{cookiecutter.project_name}}.tf_coil.builder import TFCoilBuilder
+from {{cookiecutter.project_name}}.tf_coil.designer import TFCoilDesigner
+from {{cookiecutter.project_name}}.tf_coil.manager import TFCoil
 
 # %% [markdown]
 #
