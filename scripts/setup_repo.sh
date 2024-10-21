@@ -38,6 +38,8 @@ done
 if [ ${#DIRECTORY_DIFF[@]} -eq 1 ]; then
     mv $DIRECTORY_DIFF/* $root
     mv $DIRECTORY_DIFF/.github $root
+    mv scripts_base/* scripts/
+    rm -rf scripts_base
     rm -rf $DIRECTORY_DIFF
     mv base $DIRECTORY_DIFF
     rm -rf "{{cookiecutter.project_name}}"

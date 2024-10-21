@@ -83,7 +83,7 @@ tests-cov-private  = "pytest --private --cov {{cookiecutter.project_name}} --cov
 
 # tool: ruff
 [tool.ruff]
-line-length = 80
+line-length = 89
 preview = true
 
 [tool.ruff.lint]
@@ -147,7 +147,7 @@ parallel = true
 omit = ["{{cookiecutter.project_name}}/_version.py"]
 
 [tool.coverage.paths]
-{{cookiecutter.project_name}} = ["{{cookiecutter.project_name}}", "*/{{cookiecutter.project_name}}"]
+base = ["{{cookiecutter.project_name}}", "*/{{cookiecutter.project_name}}"]
 tests = ["tests", "*/{{cookiecutter.project_name}}/tests"]
 
 [tool.coverage.report]

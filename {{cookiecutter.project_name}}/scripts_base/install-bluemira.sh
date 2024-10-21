@@ -48,8 +48,8 @@ if [ "$INSTALL_CONDA" = true ] ; then
     source scripts/install-conda.sh
 else
     source ~/.miniforge-init.sh
-    mamba env create -f conda/environment.yml -n bluemira-stellarator
-    mamba activate bluemira-stellarator
+    mamba env create -f conda/environment.yml -n bluemira-{{cookiecutter.project_name}}
+    mamba activate bluemira-{{cookiecutter.project_name}}
 fi
 pip install -e . --config-settings editable_mode=compat
 pre-commit install -f

@@ -3,8 +3,6 @@ site_description: {{cookiecutter.project_description}}
 # site_url: <set:docs-site-url>
 repo_name: {{cookiecutter.gh_org_name}}/{{cookiecutter.project_name}}
 # repo_url: <set:repo-url>
-theme:
-  name: material
 watch:
   - {{cookiecutter.project_name}}
 

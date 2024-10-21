@@ -12,7 +12,7 @@ from mkdocs_gen_files.nav import Nav
 nav = Nav()
 
 root = Path(__file__).parent.parent
-src = root / {{cookiecutter.project_name}}
+src = root / "{{cookiecutter.project_name}}"
 
 # With the navigation.sections feature enabled, this isn't necessary.
 # nav["Overview",] = "overview.md"  # noqa: ERA001
@@ -29,9 +29,7 @@ for path in sorted(src.rglob("*.py")):
     if parts[-1] == "__init__":
         is_init = True
         parts = parts[:-1]
-    elif (
-        parts[-1] == "__main__" or parts[-1] == "_version" or parts[-1] == "cli"
-    ):
+    elif parts[-1] == "__main__" or parts[-1] == "_version" or parts[-1] == "cli":
         continue
 
     p = ".".join(parts)
