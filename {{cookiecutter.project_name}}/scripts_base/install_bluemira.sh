@@ -17,12 +17,15 @@
 
 # cd $tmp_dir
 INSTALL_CONDA=false
-while getopts i: flag
+PYTHON_VERSION="3.10"
+while getopts "i p:" flag
 do
     case "${flag}" in
         i) INSTALL_CONDA=true;;
+        p) PYTHON_VERSION="${OPTARG}";;
     esac
 done
+
 
 echo
 echo Cloning Bluemira...
@@ -45,12 +48,16 @@ echo Installing...
 echo
 
 if [ "$INSTALL_CONDA" = true ] ; then
-    source scripts/install-conda.sh
+    let OPTIND--
+    source scripts/install-conda.sh -e bluemira-{{cookiecutter.project_name}} -p $PYTHON_VERSION
+    source ~/.miniforge-init.sh ""
 else
-    source ~/.miniforge-init.sh
-    mamba env create -f conda/environment.yml -n bluemira-{{cookiecutter.project_name}}
-    mamba activate bluemira-{{cookiecutter.project_name}}
+    source ~/.miniforge-init.sh ""
+    conda env create -f conda/environment.yml -n bluemira-{{cookiecutter.project_name}}
 fi
+
+conda activate bluemira-{{cookiecutter.project_name}}
+
 pip install -e . --config-settings editable_mode=compat
 pre-commit install -f
 
