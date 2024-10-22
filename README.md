@@ -20,13 +20,18 @@ bash scripts/setup_repo.sh
 
 You can then add and commit the resulting changes.
 
-Finally to set up your bluemira environment run the following
+Finally to set up your bluemira environment run the following, until bluemira >v2.4.0 you will need to use the develop branch to use this template:
 
 ```bash
-bash scripts/install_bluemira.sh -i
+bash scripts/install_bluemira.sh -i -t develop
 ```
 
-If you have already have a conda installation you can remove `-i` and the conda step will be skipped.
+If you have already have a conda installation you can remove `-i` and the conda step will be skipped. Once the environment is setup please activate your environment replacing `{your_project_name}` with the appropriate value:
+
+```bash
+source ~/.miniforge-init.sh
+conda activate bluemira-{your_project_name}
+```
 
 Any suggested improvements to the setup experience is welcomed, please open an issue or even better a PR!
 

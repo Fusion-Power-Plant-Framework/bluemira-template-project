@@ -17,12 +17,17 @@
 
 # cd $tmp_dir
 INSTALL_CONDA=false
-while getopts i: flag
+PYTHON_VERSION="3.10"
+TAG=false
+while getopts "i p:t:" flag
 do
     case "${flag}" in
         i) INSTALL_CONDA=true;;
+        p) PYTHON_VERSION="${OPTARG}";;
+        t) TAG="${OPTARG}";;
     esac
 done
+
 
 echo
 echo Cloning Bluemira...
@@ -33,11 +38,19 @@ clone_loc=$script_dir"/../bluemira"
 git clone git@github.com:Fusion-Power-Plant-Framework/bluemira.git $clone_loc
 cd $clone_loc
 
-echo
-echo Getting latest version:
-latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
-echo $latest_tag
-echo
+if [ "$TAG" = false ]; then
+    echo
+    echo Getting latest version:
+    latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+    echo $latest_tag
+    echo
+else
+    echo
+    echo Checking out $TAG
+    latest_tag=$TAG
+    echo
+fi
+
 git checkout -q $latest_tag
 
 echo
@@ -45,12 +58,17 @@ echo Installing...
 echo
 
 if [ "$INSTALL_CONDA" = true ] ; then
+    set -- -e bluemira-{{cookiecutter.project_name}} -p $PYTHON_VERSION
+    OPTIND=1
     source scripts/install-conda.sh
+    source ~/.miniforge-init.sh ""
 else
-    source ~/.miniforge-init.sh
-    mamba env create -f conda/environment.yml -n bluemira-{{cookiecutter.project_name}}
-    mamba activate bluemira-{{cookiecutter.project_name}}
+    source ~/.miniforge-init.sh ""
+    conda env create -f conda/environment.yml -n bluemira-{{cookiecutter.project_name}}
 fi
+
+conda activate bluemira-{{cookiecutter.project_name}}
+
 pip install -e . --config-settings editable_mode=compat
 pre-commit install -f
 
