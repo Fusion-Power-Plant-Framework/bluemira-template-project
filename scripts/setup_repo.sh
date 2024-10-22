@@ -15,6 +15,14 @@ if [ ! -d $root/'{{cookiecutter.project_name}}' ]; then
   exit 0
 fi
 
+read -p "This will install the 'coockiecutter' package into you Python environment.
+Do you want to continue with the setup? (y/n): " choice
+case "$choice" in
+    y|Y ) echo "Continuing...";;
+    n|N ) echo "Setup aborted."; exit 1;;
+    * ) echo "Invalid input. Setup aborted."; exit 1;;
+esac
+
 pip install -q cookiecutter
 
 cwd=$(pwd)
