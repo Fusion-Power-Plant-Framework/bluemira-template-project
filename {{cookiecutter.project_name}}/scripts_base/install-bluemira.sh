@@ -16,11 +16,11 @@
 # trap "clean_up $tmp_dir" EXIT
 
 # cd $tmp_dir
-INSTALL_CONDA=true
+INSTALL_CONDA=false
 while getopts i: flag
 do
     case "${flag}" in
-        i) INSTALL_CONDA=false;;
+        i) INSTALL_CONDA=true;;
     esac
 done
 
@@ -28,8 +28,10 @@ echo
 echo Cloning Bluemira...
 echo
 
-git clone git@github.com:Fusion-Power-Plant-Framework/bluemira.git
-cd bluemira
+script_dir=$(dirname "$0")
+clone_loc=$script_dir"/../bluemira"
+git clone git@github.com:Fusion-Power-Plant-Framework/bluemira.git $clone_loc
+cd $clone_loc
 
 echo
 echo Getting latest version:
@@ -45,9 +47,9 @@ echo
 if [ "$INSTALL_CONDA" = true ] ; then
     source scripts/install-conda.sh
 else
-    source ~/.mambaforge-init.sh
-    mamba env create -f conda/environment.yml
-    mamba activate bluemira
+    source ~/.miniforge-init.sh
+    mamba env create -f conda/environment.yml -n bluemira-{{cookiecutter.project_name}}
+    mamba activate bluemira-{{cookiecutter.project_name}}
 fi
 pip install -e . --config-settings editable_mode=compat
 pre-commit install -f
