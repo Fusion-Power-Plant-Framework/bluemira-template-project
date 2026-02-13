@@ -20,7 +20,7 @@ bash scripts/setup_repo.sh
 
 You can then add and commit the resulting changes.
 
-To reset the template run `git reset --hard`.
+To reset the template run `git reset --hard` and `git clean -idx ` to remove untracked files.
 
 Finally to set up your bluemira environment run the following, until bluemira >v2.4.0 you will need to use the develop branch to use this template:
 
