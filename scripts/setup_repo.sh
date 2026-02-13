@@ -15,22 +15,28 @@ if [ ! -d $root/'{{cookiecutter.project_name}}' ]; then
   exit 0
 fi
 
-read -p "This will install the 'coockiecutter' package into you Python environment.
-Do you want to continue with the setup? (y/n): " choice
-case "$choice" in
-    y|Y ) echo "Continuing...";;
-    n|N ) echo "Setup aborted."; exit 1;;
-    * ) echo "Invalid input. Setup aborted."; exit 1;;
-esac
-
-pip install -q cookiecutter
+if uv --help >/dev/null 2>&1; then
+    comd=uvx
+elif pip --help >/dev/null 2>&1; then
+    comd=''
+    pip install cookiecutter
+else
+    read -p "pip and uv not found in PATH. Install local copy of uv to continue setup?.
+    Do you want to continue with the setup? (y/n): " choice
+    case "$choice" in
+        y|Y ) echo "Continuing...";;
+        n|N ) echo "Setup aborted."; exit 1;;
+        * ) echo "Invalid input. Setup aborted."; exit 1;;
+    esac
+    curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="$root/bin" sh
+    comd=$root/bin/uvx
+fi
 
 cwd=$(pwd)
 cd $root
-
 DIRECTORY_PRE=($(ls -d */))
 
-cookiecutter $root
+$comd cookiecutter $root
 
 DIRECTORY_POST=($(ls -d */))
 
@@ -44,6 +50,7 @@ for i in "${DIRECTORY_POST[@]}"; do
 done
 
 if [ ${#DIRECTORY_DIFF[@]} -eq 1 ]; then
+    rm -rf $root/bin
     mv $DIRECTORY_DIFF/* $root
     mv $DIRECTORY_DIFF/.github $root
     mv scripts_base/* scripts/
