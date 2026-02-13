@@ -29,9 +29,9 @@ else
         * ) echo "Invalid input. Setup aborted."; exit 1;;
     esac
     if curl --help >/dev/null 2>&1; then
-        curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="$root/bin" sh
+        curl -LsSf https://astral.sh/uv/install.sh | env UV_NO_MODIFY_PATH=1 UV_INSTALL_DIR="$root/bin" sh
     else
-        wget -qO- https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="$root/bin" sh
+        wget -qO- https://astral.sh/uv/install.sh | env UV_NO_MODIFY_PATH=1 UV_INSTALL_DIR="$root/bin" sh
     fi
     comd=$root/bin/uvx
 fi
