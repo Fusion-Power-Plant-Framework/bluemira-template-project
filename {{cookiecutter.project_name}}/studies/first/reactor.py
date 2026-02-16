@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
-"""The reactor design example."""
+"""Study 1 example"""
 
 # %%
 from pathlib import Path
@@ -96,3 +96,8 @@ def main(build_config: Union[str, Path, dict]) -> MyReactor:  # noqa: FA100
     reactor.show_cad("xz")
 
     return reactor
+
+if __name__ == '__main__':
+
+    build_config_path = Path(Path(__file__).parent, "config/config.json").resolve()
+    reactor = main(build_config_path)
