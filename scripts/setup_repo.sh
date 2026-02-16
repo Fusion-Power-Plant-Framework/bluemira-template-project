@@ -64,6 +64,15 @@ if [ ${#DIRECTORY_DIFF[@]} -eq 1 ]; then
     rm -rf "{{cookiecutter.project_name}}"
     rm cookiecutter.json
     rm -rf $root/hooks
+
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1 && \
+        ! git rev-parse --verify HEAD >/dev/null 2>&1; then
+
+        git add .gitignore  # avoid commiting ignored things
+        git commit -m 'Initial commit'
+        git add .
+        git commit --amend
+    fi
     cd $cwd
 else
     echo "Error!" 1>&2

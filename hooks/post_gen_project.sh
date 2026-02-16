@@ -28,26 +28,22 @@ check_remote_repo() {
 
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1 &&
    [ "$(git rev-list --count HEAD 2>/dev/null)" -gt 1 ]; then
-    if check_remote_repo origin $gh_org $repo; then
-        # Remote already set
-    else
-        echo "INFO the following steps rewrite the git history and point to your new repository"
+    if ! check_remote_repo origin $gh_org $repo; then
+        echo "
+INFO the following steps rewrite the git history and point to your new repository"
 
-        read -p "
-    Do you want to clean the git repository, point to your remote and have one initial commit? (y/n)" choice
+        read -p "    Do you want to clean the git repository, point to your remote and have one initial commit? (y/n)" choice
         case "$choice" in
             y|Y ) echo "Continuing...";
                 EMAIL=$(git config user.email)
                 NAME=$(git config user.name)
+                cd ../
                 rm -rf .git
                 git init -b main
-                git remote set-url origin git@github.com:$gh_org/$repo.git
+                git remote add origin git@github.com:$gh_org/$repo.git
                 git config user.email $EMAIL
                 git config user.name $NAME
-                git add .gitignore  # avoid commiting ignored things
-                git commit -m 'Initial commit'
-                git add .
-                git commit --amend;;
+                cd - ;;
             n|N ) echo "Exiting"; exit 0;;
             * ) echo "Invalid input. Exiting"; exit 0;;
         esac
@@ -62,7 +58,4 @@ elif git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
             n|N ) echo "Exiting"; exit 0;;
             * ) echo "Invalid input. Exiting"; exit 0;;
         esac
-
-else
-    # echo "Not a repo"
 fi
