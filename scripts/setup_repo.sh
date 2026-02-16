@@ -57,12 +57,13 @@ if [ ${#DIRECTORY_DIFF[@]} -eq 1 ]; then
     rm -rf $root/bin
     mv $DIRECTORY_DIFF/* $root
     mv $DIRECTORY_DIFF/.github $root
-    mv scripts_base/* scripts/
+    mv $root/scripts_base/* $root/scripts/
     rm -rf scripts_base
     rm -rf $DIRECTORY_DIFF
     mv base $DIRECTORY_DIFF
     rm -rf "{{cookiecutter.project_name}}"
     rm cookiecutter.json
+    rm -rf $root/hooks
     cd $cwd
 else
     echo "Error!" 1>&2
