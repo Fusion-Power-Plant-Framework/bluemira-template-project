@@ -1,25 +1,26 @@
 {
-  "params": {},
+  "params": {
+    "R_0": {
+      "value": 9.0,
+      "unit": "m",
+      "source": "Input",
+      "long_name": "Major radius"
+    },
+    "A": {
+      "value": 3.1,
+      "unit": "dimensionless",
+      "source": "Input",
+      "long_name": "Aspect ratio"
+    }
+  },
   "Plasma": {
     "designer": {
       "params": {
-        "R_0": {
-          "value": 9.0,
-          "unit": "m",
-          "source": "Input",
-          "long_name": "Major radius"
-        },
         "z_0": {
           "value": 0.0,
           "unit": "m",
           "source": "Input",
           "long_name": "Reference vertical coordinate"
-        },
-        "A": {
-          "value": 3.1,
-          "unit": "dimensionless",
-          "source": "Input",
-          "long_name": "Aspect ratio"
         },
         "kappa_u": {
           "value": 1.6,
