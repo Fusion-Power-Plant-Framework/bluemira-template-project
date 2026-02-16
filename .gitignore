@@ -340,6 +340,9 @@ GitHub.sublime-settings
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,pycharm,sublimetext
 
+# Node related
+node_modules/
+
 report.html
 .hatch
 */_version.py
