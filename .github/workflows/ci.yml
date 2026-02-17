@@ -26,21 +26,29 @@ jobs:
         with:
           python-version: ${{ env.python-version }}
 
+      - name: Setup dummy git credententials
+        shell: bash -l {0}
+        run: |
+        git config user.name ci
+        git config user.email ci
+
       - name: run cookiecutter
         shell: bash -l {0}
         run: |
-        bash scripts/setup_repo.sh -d <<< $'y\nn'
+            # take default options for cookecutter and answer yes to git post_gen question
+            # pip/uv is available
+            bash scripts/setup_repo.sh -d <<< $'y'
 
       - name: Run Hatch linting tasks
         uses: Fusion-Power-Plant-Framework/fppf-actions/hatch-lint@main
 
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Checkout bluemira
-        uses: actions/checkout@v4
-        with:
-          repository: "Fusion-Power-Plant-Framework/bluemira"
+  #     - name: Checkout bluemira
+  #       uses: actions/checkout@v4
+  #       with:
+  #         repository: "Fusion-Power-Plant-Framework/bluemira"

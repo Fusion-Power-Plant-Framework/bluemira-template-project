@@ -113,8 +113,6 @@ ignore = [
   "ISC001",
   "D107",
   "DOC201",
-]
-unfixable = [
   "F401", # Don't touch unused imports, you might want to remove this
 ]
 

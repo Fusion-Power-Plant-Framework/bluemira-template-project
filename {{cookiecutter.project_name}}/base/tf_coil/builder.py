@@ -9,11 +9,7 @@ from bluemira.base.builder import Builder
 from bluemira.base.components import Component, PhysicalComponent
 from bluemira.base.parameter_frame import Parameter, ParameterFrame
 from bluemira.geometry.face import BluemiraFace
-from bluemira.geometry.tools import (
-    make_polygon,
-    offset_wire,
-    sweep_shape,
-)
+from bluemira.geometry.tools import make_polygon, offset_wire, sweep_shape
 from bluemira.geometry.wire import BluemiraWire
 
 # The TF coil builder is then passed the centreline from the designer to create

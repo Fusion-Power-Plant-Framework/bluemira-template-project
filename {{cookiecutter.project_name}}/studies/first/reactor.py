@@ -2,11 +2,10 @@
 #
 # SPDX-License-Identifier: MIT
 
-"""Study 1 example"""
+"""Study 1 example."""
 
 # %%
 from pathlib import Path
-from typing import Union
 
 from bluemira.base.parameter_frame import EmptyFrame
 from bluemira.base.reactor import Reactor
@@ -43,7 +42,7 @@ class MyReactor(Reactor):
     tf_coil: TFCoil
 
 
-def main(build_config: Union[str, Path, dict]) -> MyReactor:  # noqa: FA100
+def main(build_config: str | Path | dict) -> MyReactor:
     """Main reactor function."""
     reactor_config = ReactorConfig(build_config, EmptyFrame)
 
@@ -97,7 +96,7 @@ def main(build_config: Union[str, Path, dict]) -> MyReactor:  # noqa: FA100
 
     return reactor
 
-if __name__ == '__main__':
 
+if __name__ == "__main__":
     build_config_path = Path(Path(__file__).parent, "config/config.json").resolve()
     reactor = main(build_config_path)

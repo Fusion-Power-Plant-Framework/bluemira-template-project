@@ -3,7 +3,7 @@
 set -eo pipefail
 
 default=""
-while getopts "d:" flag
+while getopts "d" flag
 do
     case "${flag}" in
         d) default="--no-input";;
@@ -81,7 +81,7 @@ if [ ${#DIRECTORY_DIFF[@]} -eq 1 ]; then
         git add .gitignore  # avoid commiting ignored things
         git commit -m 'Initial commit'
         git add .
-        git commit --amend
+        git commit --amend --no-edit
     fi
     cd $cwd
 else
