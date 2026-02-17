@@ -73,11 +73,13 @@ class TFCoilBuilder(Builder):
             self.centreline,
             0.5 * self.params.tf_wp_width.value,
         )
-        return PhysicalComponent("Winding pack", BluemiraFace([outer, inner]))
+        return PhysicalComponent(
+            "Winding pack", BluemiraFace([outer, inner]), self.get_material("TF_WP")
+        )
 
     def build_xyz(self) -> PhysicalComponent:
         """Build the xyz Component of the TF coils."""
         wp_xs = self.make_tf_wp_xs()
         wp_xs.translate((self.centreline.bounding_box.x_min, 0, 0))
         volume = sweep_shape(wp_xs, self.centreline)
-        return PhysicalComponent("Winding pack", volume)
+        return PhysicalComponent("Winding pack", volume, self.get_material("TF_WP"))

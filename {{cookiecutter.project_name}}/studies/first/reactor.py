@@ -13,7 +13,7 @@ from bluemira.base.reactor import Reactor
 from bluemira.base.reactor_config import ReactorConfig
 
 from {{cookiecutter.project_name}}.plasma.builder import PlasmaBuilder
-from {{cookiecutter.project_name}}.plasma.desinger import PlasmaDesigner
+from {{cookiecutter.project_name}}.plasma.designer import PlasmaDesigner
 from {{cookiecutter.project_name}}.plasma.manager import Plasma
 from {{cookiecutter.project_name}}.tf_coil.builder import TFCoilBuilder
 from {{cookiecutter.project_name}}.tf_coil.designer import TFCoilDesigner
