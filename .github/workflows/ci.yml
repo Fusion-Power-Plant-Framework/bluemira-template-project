@@ -2,8 +2,8 @@ name: template_ci
 
 on:
   schedule:
-    # Runs twice a day at 7.05 and 12.05 Monday to Friday
-    - cron: "5 7,12 * * 1-5"
+    # Runs on a Monday at 7.05
+    - cron: "5 7 * * 1"
   pull_request:
   push:
     branches:
