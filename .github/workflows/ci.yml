@@ -29,15 +29,15 @@ jobs:
       - name: Setup dummy git credententials
         shell: bash -l {0}
         run: |
-        git config user.name ci
-        git config user.email ci
+          git config user.name ci
+          git config user.email ci
 
       - name: run cookiecutter
         shell: bash -l {0}
         run: |
-            # take default options for cookecutter and answer yes to git post_gen question
-            # pip/uv is available
-            bash scripts/setup_repo.sh -d <<< $'y'
+          # take default options for cookecutter and answer yes to git post_gen question
+          # pip/uv is available
+          bash scripts/setup_repo.sh -d <<< $'y'
 
       - name: Run Hatch linting tasks
         uses: Fusion-Power-Plant-Framework/fppf-actions/hatch-lint@main
