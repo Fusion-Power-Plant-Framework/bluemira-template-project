@@ -2,6 +2,15 @@
 
 set -eo pipefail
 
+default=""
+while getopts "d:" flag
+do
+    case "${flag}" in
+        d) default="--no-input";;
+    esac
+done
+
+
 echo "Bluemira Project Setup"
 
 script_dir=$(dirname "$0")
@@ -40,7 +49,7 @@ cwd=$(pwd)
 cd $root
 DIRECTORY_PRE=($(ls -d */))
 
-$comd cookiecutter $root
+$comd cookiecutter $default $root
 
 DIRECTORY_POST=($(ls -d */))
 
