@@ -69,7 +69,11 @@ fi
 
 conda activate bluemira-{{cookiecutter.project_name}}
 
-pip install -e . --config-settings editable_mode=compat
+echo "Bluemira is not installed in editable mode,
+if you edit anything in the bluemira folder you will need to
+rerun 'pip install .'"
+
+pip install .
 pre-commit install -f
 
 cd ..
