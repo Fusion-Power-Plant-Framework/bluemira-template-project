@@ -98,8 +98,6 @@ exclude = [
 ]
 select = ["ALL"]
 ignore = [
-  "ANN101", # Allow no type annotation for self in method
-  "ANN102", # Allow no type annotation for cls in classmethod
   "ANN204", # Allow no type annotation for __init__ return
   "D205", # Allow no blank lines after docstring
   "B027", # Allow non-abstract empty methods in abstract base classes
@@ -117,7 +115,7 @@ ignore = [
   "DOC201",
 ]
 unfixable = [
-  "F401", # Don't touch unused imports
+  "F401", # Don't touch unused imports, you might want to remove this
 ]
 
 [tool.ruff.lint.isort]

@@ -12,7 +12,7 @@ cd my_bm_project
 ```
 We use the [cookiecutter](https://github.com/cookiecutter/cookiecutter) project to setup a new bluemira project.
 
-With your local copy of the repository run the following script and fill in the prompts with the details. You will need pip available to install cookiecutter.
+With your local copy of the repository run the following script and fill in the prompts with the details.
 
 ```bash
 bash scripts/setup_repo.sh
@@ -20,10 +20,12 @@ bash scripts/setup_repo.sh
 
 You can then add and commit the resulting changes.
 
-Finally to set up your bluemira environment run the following, until bluemira >v2.4.0 you will need to use the develop branch to use this template:
+To reset the template run `git reset --hard` and `git clean -idx ` to remove untracked files.
+
+Finally to set up your bluemira environment run the following:
 
 ```bash
-bash scripts/install_bluemira.sh -i -t develop
+bash scripts/install_bluemira.sh -i
 ```
 
 If you have already have a conda installation you can remove `-i` and the conda step will be skipped. Once the environment is setup please activate your environment replacing `{your_project_name}` with the appropriate value:
@@ -40,7 +42,7 @@ Any suggested improvements to the setup experience is welcomed, please open an i
 The example study can be run as shown once the setup has been completed:
 
 ```
-python studies/first/run.py
+python studies/first/reactor.py
 ```
 
 ## Running tests
