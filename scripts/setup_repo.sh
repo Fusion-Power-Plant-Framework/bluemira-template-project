@@ -47,6 +47,7 @@ fi
 
 cwd=$(pwd)
 cd $root
+rm -rf $root/.github
 DIRECTORY_PRE=($(ls -d */))
 
 $comd cookiecutter $default $root
