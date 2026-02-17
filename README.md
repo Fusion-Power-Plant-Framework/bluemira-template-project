@@ -42,7 +42,7 @@ Any suggested improvements to the setup experience is welcomed, please open an i
 The example study can be run as shown once the setup has been completed:
 
 ```
-python studies/first/run.py
+python studies/first/reactor.py
 ```
 
 ## Running tests
