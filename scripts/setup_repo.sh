@@ -2,6 +2,15 @@
 
 set -eo pipefail
 
+default=""
+while getopts "d" flag
+do
+    case "${flag}" in
+        d) default="--no-input";;
+    esac
+done
+
+
 echo "Bluemira Project Setup"
 
 script_dir=$(dirname "$0")
@@ -38,9 +47,10 @@ fi
 
 cwd=$(pwd)
 cd $root
+rm -rf $root/.github
 DIRECTORY_PRE=($(ls -d */))
 
-$comd cookiecutter $root
+$comd cookiecutter $default $root
 
 DIRECTORY_POST=($(ls -d */))
 
@@ -71,7 +81,7 @@ if [ ${#DIRECTORY_DIFF[@]} -eq 1 ]; then
         git add .gitignore  # avoid commiting ignored things
         git commit -m 'Initial commit'
         git add .
-        git commit --amend
+        git commit --amend --no-edit
     fi
     cd $cwd
 else

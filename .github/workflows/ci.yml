@@ -1,0 +1,54 @@
+name: template_ci
+
+on:
+  schedule:
+    # Runs on a Monday at 7.05
+    - cron: "5 7 * * 1"
+  pull_request:
+  push:
+    branches:
+      - develop
+      - main
+
+env:
+  python-version: "3.11"
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup python and hatch
+        uses: Fusion-Power-Plant-Framework/fppf-actions/setup-hatch@main
+        with:
+          python-version: ${{ env.python-version }}
+
+      - name: Setup dummy git credententials
+        shell: bash -l {0}
+        run: |
+          git config user.name ci
+          git config user.email ci
+
+      - name: run cookiecutter
+        shell: bash -l {0}
+        run: |
+          # take default options for cookecutter and answer yes to git post_gen question
+          # pip/uv is available
+          bash scripts/setup_repo.sh -d <<< $'y'
+
+      - name: Run Hatch linting tasks
+        uses: Fusion-Power-Plant-Framework/fppf-actions/hatch-lint@main
+
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+
+  #     - name: Checkout bluemira
+  #       uses: actions/checkout@v4
+  #       with:
+  #         repository: "Fusion-Power-Plant-Framework/bluemira"
