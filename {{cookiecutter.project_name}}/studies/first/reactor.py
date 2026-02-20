@@ -11,6 +11,7 @@ from typing import Union
 from bluemira.base.parameter_frame import EmptyFrame
 from bluemira.base.reactor import Reactor
 from bluemira.base.reactor_config import ReactorConfig
+from bluemira.materials.cache import establish_material_cache
 
 from {{cookiecutter.project_name}}.plasma.builder import PlasmaBuilder
 from {{cookiecutter.project_name}}.plasma.designer import PlasmaDesigner
@@ -46,6 +47,11 @@ class MyReactor(Reactor):
 def main(build_config: Union[str, Path, dict]) -> MyReactor:  # noqa: FA100
     """Main reactor function."""
     reactor_config = ReactorConfig(build_config, EmptyFrame)
+
+    establish_material_cache([
+            "{{ cookiecutter.project_name }}.materials"
+            "matproplib",
+        ])
 
     # %% [markdown]
     #
