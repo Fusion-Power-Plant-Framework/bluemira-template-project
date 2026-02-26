@@ -1,3 +1,5 @@
+{%- set words = cookiecutter.project_name | replace('-', ' ') | replace('_', ' ') | trim | title | replace(' ', '') -%}
+{%- set pascal = words[:1] | upper ~ words[1:] -%}
 # SPDX-FileCopyrightText: {{cookiecutter.copyright_yr}}-present {{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>
 #
 # SPDX-License-Identifier: MIT
@@ -12,11 +14,12 @@ from bluemira.base.reactor import Reactor
 from bluemira.base.reactor_config import ReactorConfig
 
 from {{cookiecutter.project_name}}.plasma.builder import PlasmaBuilder
-from {{cookiecutter.project_name}}.plasma.desinger import PlasmaDesigner
+from {{cookiecutter.project_name}}.plasma.designer import PlasmaDesigner
 from {{cookiecutter.project_name}}.plasma.manager import Plasma
 from {{cookiecutter.project_name}}.tf_coil.builder import TFCoilBuilder
 from {{cookiecutter.project_name}}.tf_coil.designer import TFCoilDesigner
 from {{cookiecutter.project_name}}.tf_coil.manager import TFCoil
+from {{cookiecutter.project_name}}.params import {{ pascal }}Params
 
 # %% [markdown]
 #
@@ -44,7 +47,7 @@ class MyReactor(Reactor):
 
 def main(build_config: str | Path | dict) -> MyReactor:
     """Main reactor function."""
-    reactor_config = ReactorConfig(build_config, EmptyFrame)
+    reactor_config = ReactorConfig(build_config, {{pascal}}Params)
 
     # %% [markdown]
     #
