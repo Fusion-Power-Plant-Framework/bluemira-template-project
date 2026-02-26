@@ -34,8 +34,10 @@ class TFCoilBuilder(Builder):
     params: TFCoilBuilderParams
     param_cls = TFCoilBuilderParams
 
-    def __init__(self, params: TFCoilBuilderParams, centreline: BluemiraWire):
-        super().__init__(params, {})
+    def __init__(
+        self, params: TFCoilBuilderParams, config: dict, centreline: BluemiraWire
+    ):
+        super().__init__(params, config)
         self.centreline = centreline
 
     def make_tf_wp_xs(self) -> BluemiraWire:

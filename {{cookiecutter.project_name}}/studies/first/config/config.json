@@ -13,6 +13,7 @@
       "long_name": "Aspect ratio"
     }
   },
+  "Radial build":{"run_mode": "run"},
   "Plasma": {
     "material": "plasma",
     "designer": {
