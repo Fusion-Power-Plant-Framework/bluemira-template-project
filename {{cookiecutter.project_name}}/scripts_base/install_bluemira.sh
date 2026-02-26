@@ -69,7 +69,7 @@ fi
 
 conda activate bluemira-{{cookiecutter.project_name}}
 
-pip install -e . --config-settings editable_mode=compat
+pip install -e ."[process]" --config-settings editable_mode=compat
 pre-commit install -f
 
 cd ..
