@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: MIT
 
-"""Materials for {{cookiecutter.project_name}}"""
+"""Materials for {{cookiecutter.project_name}}."""
 
-from matproplib.library.steel import SS316_L
 from matproplib.library.fluids import DTPlasma
+from matproplib.library.steel import SS316_L
 
 tf_winding_pack = SS316_L()
 plasma = DTPlasma()

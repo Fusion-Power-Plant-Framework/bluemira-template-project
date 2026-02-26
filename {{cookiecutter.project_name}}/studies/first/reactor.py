@@ -14,15 +14,14 @@ from bluemira.base.reactor import Reactor
 from bluemira.base.reactor_config import ReactorConfig
 from bluemira.materials.cache import establish_material_cache
 
+from {{cookiecutter.project_name}}.params import {{ pascal }}Params
 from {{cookiecutter.project_name}}.plasma.builder import PlasmaBuilder
 from {{cookiecutter.project_name}}.plasma.designer import PlasmaDesigner
 from {{cookiecutter.project_name}}.plasma.manager import Plasma
 from {{cookiecutter.project_name}}.radial_build import radial_build
-
 from {{cookiecutter.project_name}}.tf_coil.builder import TFCoilBuilder
 from {{cookiecutter.project_name}}.tf_coil.designer import TFCoilDesigner
 from {{cookiecutter.project_name}}.tf_coil.manager import TFCoil
-from {{cookiecutter.project_name}}.params import {{ pascal }}Params
 
 # %% [markdown]
 #
@@ -49,20 +48,22 @@ class MyReactor(Reactor):
 
 
 def main(build_config: str | Path | dict) -> MyReactor:
-    """Main reactor function."""
+    """Create the reactor."""
     reactor_config = ReactorConfig(build_config, {{pascal}}Params)
 
     establish_material_cache([
-            "{{ cookiecutter.project_name }}.materials",
-            "matproplib",
-        ])
+        "{{ cookiecutter.project_name }}.materials",
+        "matproplib",
+    ])
     # %% [markdown]
     #
     # Run PROCESSS
 
     # %%
-    radial_build(reactor_config.params_for("Radial build").global_params,
-            reactor_config.config_for("Radial build"))
+    radial_build(
+        reactor_config.params_for("Radial build").global_params,
+        reactor_config.config_for("Radial build"),
+    )
     # %% [markdown]
     #
     # We create our plasma

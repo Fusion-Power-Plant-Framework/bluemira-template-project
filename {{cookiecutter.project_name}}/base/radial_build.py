@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: {{cookiecutter.copyright_yr}}-present {{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>
+#
+# SPDX-License-Identifier: MIT
+"""Systems code radial build creation."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -248,9 +253,7 @@ def radial_build(params: ParameterFrame, build_config: dict) -> ParameterFrame:
 
     if run_mode == "run":
         template_builder.set_run_title(
-            build_config.pop(
-                "PROCESS_runtitle", "Bluemira {{cookiecutter.project_name}}"
-            )
+            build_config.pop("PROCESS_runtitle", "Bluemira {{cookiecutter.project_name}}")
         )
         build_config["template_in_dat"] = template_builder.make_inputs()
     solver = systems_code_solver(params, build_config)

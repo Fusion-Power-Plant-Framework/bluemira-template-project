@@ -13,7 +13,7 @@
       "long_name": "Aspect ratio"
     }
   },
-  "Radial build":{"run_mode": "run"},
+  "Radial build": { "run_mode": "run" },
   "Plasma": {
     "material": "plasma",
     "designer": {
@@ -66,7 +66,7 @@
       }
     },
     "builder": {
-      "material": {"TF_WP":"tf_winding_pack"},
+      "material": { "TF_WP": "tf_winding_pack" },
       "params": {
         "tf_wp_width": {
           "value": 0.6,
