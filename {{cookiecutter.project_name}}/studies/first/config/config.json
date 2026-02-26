@@ -14,6 +14,7 @@
     }
   },
   "Plasma": {
+    "material": "plasma",
     "designer": {
       "params": {
         "z_0": {
@@ -64,6 +65,7 @@
       }
     },
     "builder": {
+      "material": {"TF_WP":"tf_winding_pack"},
       "params": {
         "tf_wp_width": {
           "value": 0.6,

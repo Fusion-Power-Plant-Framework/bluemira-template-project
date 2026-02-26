@@ -12,6 +12,7 @@ from pathlib import Path
 from bluemira.base.parameter_frame import EmptyFrame
 from bluemira.base.reactor import Reactor
 from bluemira.base.reactor_config import ReactorConfig
+from bluemira.materials.cache import establish_material_cache
 
 from {{cookiecutter.project_name}}.plasma.builder import PlasmaBuilder
 from {{cookiecutter.project_name}}.plasma.designer import PlasmaDesigner
@@ -48,6 +49,11 @@ class MyReactor(Reactor):
 def main(build_config: str | Path | dict) -> MyReactor:
     """Main reactor function."""
     reactor_config = ReactorConfig(build_config, {{pascal}}Params)
+
+    establish_material_cache([
+            "{{ cookiecutter.project_name }}.materials",
+            "matproplib",
+        ])
 
     # %% [markdown]
     #

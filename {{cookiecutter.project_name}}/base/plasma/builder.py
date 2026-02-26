@@ -42,18 +42,19 @@ class PlasmaBuilder(Builder):
 
         This generates a ``PhysicalComponent``, whose shape is a face.
         """
-        component = PhysicalComponent("LCFS", BluemiraFace(self.wire))
+        component = PhysicalComponent(
+            "LCFS", BluemiraFace(self.wire), self.get_material()
+        )
         component.display_cad_options.color = BLUE_PALETTE["PL"]
         component.display_cad_options.transparency = 0.5
         return component
 
-    @staticmethod
-    def build_xyz(lcfs: BluemiraFace) -> PhysicalComponent:
+    def build_xyz(self, lcfs: BluemiraFace) -> PhysicalComponent:
         """Build the 3D (xyz) Component of the plasma by revolving
         the given face 360 degrees.
         """
         shape = revolve_shape(lcfs, degree=360)
-        component = PhysicalComponent("LCFS", shape)
+        component = PhysicalComponent("LCFS", shape, self.get_material())
         component.display_cad_options.color = BLUE_PALETTE["PL"]
         component.display_cad_options.transparency = 0.5
         return component
