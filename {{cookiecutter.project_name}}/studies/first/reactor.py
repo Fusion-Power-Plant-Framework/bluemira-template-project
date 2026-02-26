@@ -49,7 +49,7 @@ def main(build_config: Union[str, Path, dict]) -> MyReactor:  # noqa: FA100
     reactor_config = ReactorConfig(build_config, EmptyFrame)
 
     establish_material_cache([
-            "{{ cookiecutter.project_name }}.materials"
+            "{{ cookiecutter.project_name }}.materials",
             "matproplib",
         ])
 
