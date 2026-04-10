@@ -42,13 +42,39 @@ jobs:
       - name: Run Hatch linting tasks
         uses: Fusion-Power-Plant-Framework/fppf-actions/hatch-lint@main
 
-  # test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-  #     - name: Checkout bluemira
-  #       uses: actions/checkout@v4
-  #       with:
-  #         repository: "Fusion-Power-Plant-Framework/bluemira"
+      - name: Setup dummy git credententials
+        shell: bash -l {0}
+        run: |
+          git config user.name ci
+          git config user.email ci
+
+      - name: run cookiecutter
+        shell: bash -l {0}
+        run: |
+          # take default options for cookecutter and answer yes to git post_gen question
+          # pip/uv is available
+          bash scripts/setup_repo.sh -d <<< $'y'
+
+      - name: Build bluemira
+        uses: Fusion-Power-Plant-Framework/fppf-actions/build-action@deddef408d0061e542692a7bf97368449c5ee5b3
+        with:
+          python-version: ${{ env.python-version }}
+          clone-bluemira: "true"
+
+      - name: Run pytest
+        shell: bash -l {0}
+        env:
+          PACKAGE: template_project
+        run: |
+          pytest --cov=${PACKAGE} \
+                 --cov-report html:htmlcov \
+                 --cov-report xml \
+                 --json-report \
+                 --json-report-indent=3 \
+                 tests
