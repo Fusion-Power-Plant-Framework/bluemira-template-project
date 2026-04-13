@@ -82,7 +82,6 @@ for ieq_constraint in (
 
 # Variable vector values and bounds
 template_builder.add_variable("beta_total_vol_avg", 0.03)
-template_builder.add_variable("j_cs_flat_top_end", 1.5e7)
 template_builder.add_variable("nd_plasma_electrons_vol_avg", 7.5e19)
 template_builder.add_variable("b_plasma_toroidal_on_axis", 5.7)
 
@@ -146,10 +145,9 @@ template_builder.add_input_values({
     "p_hcd_injected_max": 200.0,
     "p_plant_electric_net_required_mw": 400.0,
     "b_tf_inboard_max": 14.0,
-    "fjohc": 1.0,
+    "fjohc": 0.7,
     "f_j_cs_start_pulse_end_flat_top": 1.0,
-    "fjohc0": 1.0,
-    "fiooic": 1.0,
+    "fiooic": 0.7,
     "v_tf_coil_dump_quench_max_kv": 10.0,
     "tmargmin": 1.5,
     "temp_cs_superconductor_margin_min": 1.5,
@@ -220,7 +218,7 @@ template_builder.add_input_values({
     "f_z_cs_tf_internal": 0.9,
     "j_pf_coil_wp_peak": [1.1e7, 1.1e7, 6.0e6, 6.0e6, 8.0e6, 8.0e6, 8.0e6, 8.0e6],
     "rpf2": -1.825,
-    "zref": [3.6, 1.2, 1.0, 2.8, 1.0, 1.0, 1.0, 1.0],
+    "zref": [3.6, 1.2, 1.0, 2.8, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
     "fcuohsu": 0.70,
     "dr_tf_plasma_case": 0.06,
     "dx_tf_side_case_min": 0.05,
