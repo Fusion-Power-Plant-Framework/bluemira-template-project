@@ -9,6 +9,7 @@ from dataclasses import dataclass
 
 from bluemira.base.parameter_frame import Parameter, ParameterFrame
 
+
 @dataclass
 class {{ pascal }}Params(ParameterFrame):
     """{{ cookiecutter.project_name }} Parameters."""
