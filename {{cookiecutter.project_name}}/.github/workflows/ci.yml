@@ -23,6 +23,7 @@ jobs:
 
       - name: Setup python and hatch
         uses: Fusion-Power-Plant-Framework/fppf-actions/setup-hatch@deddef408d0061e542692a7bf97368449c5ee5b3
+        with:
 {%- raw %}
           python-version: ${{ env.python-version }}
 {%- endraw %}

@@ -130,7 +130,7 @@ convention = "numpy"
 
 [tool.ruff.lint.per-file-ignores]
 # Tests can use magic values, assertions, and relative imports
-"tests/**/*" = ["PLR2004", "S101", "TID252"]
+"tests/**/*" = ["PLR2004", "S101", "TID252", "ANN"]
 "__init__.py" = ["F401", "F403"]
 "studies/**/*" = ["INP001", "CPY001"]
 
