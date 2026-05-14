@@ -71,7 +71,7 @@ if [ "$update" = true ] ; then
     echo
     echo Removing old environment...
     echo
-    conda remove -n {{cookiecutter.project_name}} --all
+    conda remove -n bluemira-{{cookiecutter.project_name}} --all
     echo
     echo Updating...
     git checkout -q main
@@ -85,7 +85,7 @@ else
 fi
 
 if [ "$INSTALL_CONDA" = true ] ; then
-    set -- -e {{cookiecutter.project_name}} -p $PYTHON_VERSION
+    set -- -e bluemira-{{cookiecutter.project_name}} -p $PYTHON_VERSION
     OPTIND=1
     source scripts/install-conda.sh
     source ~/.miniforge-init.sh ""
@@ -94,7 +94,7 @@ else
     conda env create -f conda/environment.yml -n {{cookiecutter.project_name}} -q
 fi
 
-conda activate {{cookiecutter.project_name}}
+conda activate bluemira-{{cookiecutter.project_name}}
 
 pip install -e . --config-settings editable_mode=compat
 pre-commit install -f
