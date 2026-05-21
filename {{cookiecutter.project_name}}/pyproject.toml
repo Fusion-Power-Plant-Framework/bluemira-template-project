@@ -81,6 +81,10 @@ tests      = "pytest {args:tests}"
 tests-cov  = "pytest --cov {{cookiecutter.project_name}}  --cov-report html:htmlcov_{{cookiecutter.project_name}} --cov-report xml {args:tests}"
 tests-cov-private  = "pytest --private --cov {{cookiecutter.project_name}} --cov-report html:htmlcov --cov-report xml {args:tests}"
 
+# tool: pytest
+[tool.pytest.ini_options]
+addopts = "--ignore=bluemira"
+
 # tool: ruff
 [tool.ruff]
 line-length = 89
