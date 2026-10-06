@@ -3,10 +3,11 @@
 # SPDX-License-Identifier: MIT
 """Test configuration."""
 
+from contextlib import suppress
 from unittest import mock
 
-import pytest
 import matplotlib as mpl
+import pytest
 
 
 def pytest_addoption(parser):
@@ -28,13 +29,13 @@ def pytest_configure(config):
         # See bluemira/conftest.py for more details.
         with suppress(ImportError):
             mock.patch("bluemira.codes._polyscope.ps").start()
-        for _name in (
+        for name in (
             "bluemira.codes.cadapi._freecad.api.show_cad",
             "bluemira.codes.cadapi._cadquery.show_cad",
             "bluemira.codes._geometryapi.show_cad",
         ):
             with suppress(ImportError, AttributeError):
-                mock.patch(_name).start()
+                mock.patch(name).start()
 
 
 @pytest.fixture(autouse=True)
