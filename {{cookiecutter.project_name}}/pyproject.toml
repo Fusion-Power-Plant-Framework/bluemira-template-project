@@ -118,6 +118,10 @@ ignore = [
   "D107",
   "DOC201",
   "F401", # Don't touch unused imports, you might want to remove this
+  "RUF105",  # keep codes
+  "RUF106",
+  "RUF201",
+  "pytest-fixture-autouse",
 ]
 
 [tool.ruff.lint.isort]
