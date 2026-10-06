@@ -3,8 +3,10 @@
 # SPDX-License-Identifier: MIT
 """Test configuration."""
 
-import matplotlib as mpl
+from unittest import mock
+
 import pytest
+import matplotlib as mpl
 
 
 def pytest_addoption(parser):
@@ -22,6 +24,17 @@ def pytest_configure(config):
     if not config.option.plotting_on:
         # We're not displaying plots so use a display-less backend
         mpl.use("Agg")
+        # Disable CAD viewer by mocking out every show_cad entry point.
+        # See bluemira/conftest.py for more details.
+        with suppress(ImportError):
+            mock.patch("bluemira.codes._polyscope.ps").start()
+        for _name in (
+            "bluemira.codes.cadapi._freecad.api.show_cad",
+            "bluemira.codes.cadapi._cadquery.show_cad",
+            "bluemira.codes._geometryapi.show_cad",
+        ):
+            with suppress(ImportError, AttributeError):
+                mock.patch(_name).start()
 
 
 @pytest.fixture(autouse=True)
