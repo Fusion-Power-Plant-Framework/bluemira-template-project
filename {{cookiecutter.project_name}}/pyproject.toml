@@ -7,7 +7,7 @@ name = "{{cookiecutter.project_name}}"
 dynamic = ["version"]
 description = '{{cookiecutter.project_description}}'
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "MIT"
 keywords = []
 authors = [
@@ -15,7 +15,8 @@ authors = [
 ]
 classifiers = [
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
 ]
 
 dependencies = ["bluemira", "numpy", "matplotlib", "matproplib"]
@@ -75,7 +76,7 @@ all    = ["style", "typing"]
 [tool.hatch.envs.test]
 features = ["test"]
 [[tool.hatch.envs.test.matrix]]
-python = ["3.10", "3.11", "3.12"]
+python = ["3.11", "3.12"]
 [tool.hatch.envs.test.scripts]
 tests      = "pytest {args:tests}"
 tests-cov  = "pytest --cov {{cookiecutter.project_name}}  --cov-report html:htmlcov_{{cookiecutter.project_name}} --cov-report xml {args:tests}"
