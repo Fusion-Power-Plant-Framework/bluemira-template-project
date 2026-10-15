@@ -45,6 +45,13 @@ jobs:
 {%- endraw %}
           clone-bluemira: "true"
 
+      - name: Install PROCESS
+        uses: ./.github/workflows/actions/process
+        with:
+{%- raw %}
+          version: ${{env.process-version}}
+{%- endraw %}
+
       - name: Run pytest
         shell: bash -l {0}
         env:
