@@ -14,7 +14,7 @@ runs:
         path: "./process"
 {%- raw %}
         ref: ${{ inputs.version }}
-{%- endraw}
+{%- endraw %}
 
     - name: Move process and install dependencies
       id: deps
@@ -26,9 +26,9 @@ runs:
       working-directory: "/home/runner/work/"
       shell: bash -l {0}
       env:
-{%- raw}
+{%- raw %}
         REPO: ${{ github.event.repository.name }}
-{%- endraw}
+{%- endraw %}
       run: |
         cd $REPO/process
         pip install .
