@@ -16,13 +16,23 @@
 # trap "clean_up $tmp_dir" EXIT
 
 # cd $tmp_dir
+help() {
+    echo "Usage: $(basename $0) [-h] [-i CONDA] [-p PYTHON] [-t TAG]"
+    echo "Options;"
+    echo "-h, --help     display this help message"
+    echo "-i, --install  install conda"
+    echo "-p, --python   set a Python version"
+    echo "-t, --tag      set a tag for a release version of Bluemira. Default is the latest version."
+    exit 0
+}
 INSTALL_CONDA=false
 PYTHON_VERSION="3.11"
 TAG=false
-while getopts "i p:t:" flag
+while getopts "i :hp:t:" flag
 do
     case "${flag}" in
         i) INSTALL_CONDA=true;;
+        h) help;;
         p) PYTHON_VERSION="${OPTARG}";;
         t) TAG="${OPTARG}";;
     esac
