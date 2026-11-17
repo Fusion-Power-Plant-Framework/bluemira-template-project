@@ -1,0 +1,16 @@
+name: Commit Setup
+
+runs:
+  - name: Setup dummy git credententials
+    shell: bash -l {0}
+    run: |
+      git config user.name ci
+      git config user.email ci
+  - name: Add and commit changes from running setup_repo.sh
+    shell: bash -l {0}
+    env:
+      REPO: ${{ github.event.repository.name }}
+    run: |
+      cd $REPO
+      git add ./
+      git commit -m "repo setup"
